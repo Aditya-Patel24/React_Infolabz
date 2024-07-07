@@ -1,0 +1,118 @@
+<!-- TASK 1 : API ACCESS ( PRINT DATA )
+
+API : http://universities.hipolabs.com/search?country=india
+
+Print universities from above API in below table format. ( You can added css/bootstrap as per your requirement ) 
+
+SR NO | UNIVERSITY NAME | STATE-PROVINCE  | WEBSITE LINK 
+1          Ashoka University           Haryana                         Visit Site
+
+( on click of visit site, website should be open in new tab ) -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Data</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #83a4d4, #b6fbff);
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .table-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #d1ecf1;
+        }
+
+        .visit-link {
+            color: #007bff;
+        }
+
+        .visit-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>University Data</h1>
+    <div class="container table-container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">SR NO</th>
+                    <th scope="col">UNIVERSITY NAME</th>
+                    <th scope="col">STATE-PROVINCE</th>
+                    <th scope="col">WEBSITE LINK</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        async function displayData() {
+            var response = await fetch(`http://universities.hipolabs.com/search?country=india`);
+            var data = await response.json();
+            console.log(data);
+
+            var tbody = document.getElementById('table-body');
+            var tableRows = '';
+            
+            data.forEach((university, index) => {
+                tableRows += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${university.name}</td>
+                        <td>${university["state-province"] || 'N/A'}</td>
+                        <td><a href="${university.web_pages[0]}" target="_blank" class="visit-link">Visit Site</a></td>
+                    </tr>
+                      `;
+                console.log(tableRows);
+            });
+            
+            tbody.innerHTML = tableRows;
+        }
+        displayData();
+    </script>
+</body>
+</html>

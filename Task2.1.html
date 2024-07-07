@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+<form id="registrationForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="Male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="Female" required>
+    <label for="female">Female</label><br><br>
+
+    <label for="city">City:</label><br>
+    <select id="city" name="city" required>
+        <option value="">Select a city</option>
+        <option value="Ahmedabad">Ahmedabad</option>
+        <option value="Gandhinagar">Gandhinagar</option>
+        <option value="Baroda">Baroda</option>
+        <option value="Kapadwanj">Kapadwanj</option>
+        <option value="America">America</option>
+    </select><br><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="button" value="Submit" onclick="displayData()">
+</form>
+
+<h2>Submitted Data</h2>
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>City</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    function displayData() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const city = document.getElementById('city').value;
+        const address = document.getElementById('address').value;
+
+        const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML=`<td>${name}</td><td>${email}</td><td>${phone}</td><td>${gender}</td><td>${city}</td><td>${address}</td>`
+       
+        document.getElementById('registrationForm').reset();
+    }
+</script>
+
+</body>
+</html>

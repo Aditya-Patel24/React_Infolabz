@@ -1,0 +1,30 @@
+<!-- Task 3 : Allow user to insert Mutual fund scheme code. If found print scheme name otherwise print scheme not found. 
+
+API: https://api.mfapi.in/mf -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Fund</title>
+</head>
+<body>
+    <h1>Enter Mutual Fund Scheme Code:</h1>
+    <input type="number" id="schemeCode" name="schemeCode" required>
+    <input type="button" value="Submit" onclick="displayData()">
+    <script>
+        async function displayData(){
+            let schemeCode = document.getElementById('schemeCode').value;
+            var response = await fetch(`https://api.mfapi.in/mf/${schemeCode}`);
+            var data = await response.json();
+            if(data.meta.scheme_code == schemeCode){
+                document.write(`<h1>Scheme Name: ${data.meta.scheme_name}</h1>`);
+            } else {
+                document.write(`<h1>Scheme not found</h1>`);
+            }
+        }
+    </script>
+</body>
+</html>

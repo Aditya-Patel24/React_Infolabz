@@ -1,0 +1,31 @@
+<!-- TASK 1 : ALLOW USER TO INSERT A NUMBER VIA FORM ( HTML FORM ). ENTERED NUMBER SHOULD BE PASSED IN ARROW FUNCTION VIA ARGUMENT AND PRINT / ALERT THAT NUMBER IS EVEN OR ODD.  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even or Odd</title>
+    <script>
+        const checkEvenOdd = (number) => {
+            if (number % 2 === 0) {
+                alert(`${number} is even.`);
+            } else {
+                alert(`${number} is odd.`);
+            }
+        };
+
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            const number = document.getElementById('number').value;
+            checkEvenOdd(number);
+        };
+    </script>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <h1>Enter a number:</h1>
+        <input type="number" id="number" name="number" required>
+        <button type="submit">Check</button>
+    </form>
+</body>
+</html>

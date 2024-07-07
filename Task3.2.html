@@ -1,0 +1,106 @@
+<!-- TASK 2 : API SEARCH OPERATION 
+
+API : https://isro.vercel.app/api/spacecrafts
+
+Allow user to insert name of spacecraft in textbox. Print Spacecraft found or not.  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceCraft Search</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .result-message {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>SpaceCraft Search</h1>
+        <div class="form-group">
+            <input type="text" class="form-control" id="spaceCraft" name="spaceCraft" placeholder="Enter spacecraft name" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-submit" onclick="displayData()">Submit</button>
+        </div>
+        <div id="resultContainer" class="result-container"></div>
+    </div>
+
+    <script>
+        async function displayData() {
+            let spaceCraft = document.getElementById('spaceCraft').value.trim();
+            console.log("Input: ", spaceCraft);
+
+            var response = await fetch(`https://isro.vercel.app/api/spacecrafts`);
+            var data = await response.json();
+            console.log("Data from API: ", data);
+
+            let found = false;
+            for (var i = 0; i < data.spacecrafts.length; i++) {
+                if (data.spacecrafts[i].name.toLowerCase() === spaceCraft.toLowerCase()) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                document.getElementById('resultContainer').innerHTML = `<h2 class="result-message">Spacecraft <strong>${spaceCraft}</strong> found!</h2>`;
+            } else {
+                document.getElementById('resultContainer').innerHTML = `<h2 class="result-message">Spacecraft <strong>${spaceCraft}</strong> not found!</h2>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

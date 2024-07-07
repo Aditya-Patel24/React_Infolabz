@@ -1,0 +1,55 @@
+<!-- TASK 3 : 
+
+API : https://data.covid19india.org/data.json
+
+PRINT DATA FROM ABOVE API IN TABLE FORMAT 
+
+SR NO  | STATE NAME | CONFIRMED CASES | RECOVERED CASES | DEATH CASES -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 India Data</title>
+</head>
+
+<body>
+    <h1>COVID-19 India Data</h1>
+
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('https://data.covid19india.org/data.json');
+                const data = await response.json();
+                document.write("<table border='1'>");
+                document.write("<tr>");
+                document.write("<th>SR NO</th>");
+                document.write("<th>STATE NAME</th>");
+                document.write("<th>CONFIRMED CASES</th>");
+                document.write("<th>RECOVERED CASES</th>");
+                document.write("<th>DEATH CASES</th>");
+                document.write("</tr>");
+                for (let i = 1; i < data.statewise.length; i++) {
+                    document.write("<tr>");
+                    document.write("<td>" + i + "</td>");
+                    document.write("<td>" + data.statewise[i].state + "</td>");
+                    document.write("<td>" + data.statewise[i].confirmed + "</td>");
+                    document.write("<td>" + data.statewise[i].recovered + "</td>");
+                    document.write("<td>" + data.statewise[i].deaths + "</td>");
+                    document.write("</tr>");
+                }
+                document.write("</table>");
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        fetchData();
+
+    </script>
+</body>
+
+</html>
