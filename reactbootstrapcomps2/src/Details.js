@@ -44,7 +44,7 @@ function Termsandconditions() {
           <Offcanvas.Title>Terms and Conditions</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <p>Here you can put the terms and conditions...</p>
+          <p>Here you can put the terms and conditions... </p>
         </Offcanvas.Body>
       </Offcanvas>
     </div>
