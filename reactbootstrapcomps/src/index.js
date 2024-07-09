@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import Mainmodel from './Modelpage';
+import Resulttble from './Table';
+import { Fullscreenmodel, Largemodel } from './Modelpage';
+import { Second } from './App';
+import { Btnbadge, Pillsuccessbadge, Passbadge, Failbadge } from './Navbar';
+import Bdgmain from './Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <Second />
+    <Mainmodel />
+    <Fullscreenmodel />
+    <Largemodel />
+    <Resulttble />
+    <Bdgmain />
+    <Btnbadge />
+    <Pillsuccessbadge />
+    <Passbadge />
+    <Failbadge />
   </React.StrictMode>
 );
 
