@@ -1,4 +1,4 @@
-import Table from "react-bootstrap/Table";
+import { Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React from "react";
@@ -41,5 +41,4 @@ function App() {
     </>
   );
 }
-
 export default App;

@@ -6,6 +6,7 @@ function App() {
     <div className="App">
      <h1>Bitcoin Live Data</h1>
      <BitcoinData/>
+     <img src="https://media3.giphy.com/media/EIOKH2p0wqgl9KW5fg/giphy.gif" alt="" />
     </div>
   );
 }

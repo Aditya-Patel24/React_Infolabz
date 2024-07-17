@@ -14,15 +14,16 @@ API: https://api.mfapi.in/mf -->
     <h1>Enter Mutual Fund Scheme Code:</h1>
     <input type="number" id="schemeCode" name="schemeCode" required>
     <input type="button" value="Submit" onclick="displayData()">
+    <div id="result"></div> 
     <script>
         async function displayData(){
             let schemeCode = document.getElementById('schemeCode').value;
             var response = await fetch(`https://api.mfapi.in/mf/${schemeCode}`);
             var data = await response.json();
-            if(data.meta.scheme_code == schemeCode){
-                document.write(`<h1>Scheme Name: ${data.meta.scheme_name}</h1>`);
+            if(data.meta && data.meta.scheme_code == schemeCode){
+                document.getElementById('result').innerHTML = `<h2>Scheme Name: ${data.meta.scheme_name}</h2>`;
             } else {
-                document.write(`<h1>Scheme not found</h1>`);
+                document.getElementById('result').innerHTML = `<h2>Scheme not found</h2>`;
             }
         }
     </script>
